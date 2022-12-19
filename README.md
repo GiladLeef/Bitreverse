@@ -26,9 +26,6 @@ C:\Users\User>Bitreverse.exe -h
 - 1 Ekeys = 1,000,000,000,000,000,000
 - 1 Pkeys = 1,000,000,000,000,000,00
 
-When using 5 or more GPUs, there is a decrease in the overall speed by -30%<br />
-In order not to lose speed, it is better to run window copies for each GPU with the -d 0 or -d 1 parameter ...
-
 ### Search [Puzzles 120-160](https://privatekeys.pw/puzzles/bitcoin-puzzle-tx)<br />
 #120 17s2b9ksz5y7abUm92cHwG8jEPCzK3dLnT<br />
 -pk 800000000000000000000000000000<br />
