@@ -18,7 +18,7 @@ C:\Users\User>Bitreverse.exe -h
 -wl      Set recovery file from which the state will be loaded
 -wt      Set timer for autosaving current state, Default every 180 seconds
 ```
-### Collider Speed: 
+### Colliding Speed: 
 - RTX 3090 (24 GB) = 4.7 Ekeys/s
 - RTX 3080 (10 GB) = 2.7 Ekeys/s
 - RTX 2070 ( 8 GB) = 1.7 Ekeys/s
