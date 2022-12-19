@@ -73,9 +73,6 @@ C:\Users\User>Bitreverse.exe -h
 -pb 02E0A8B039282FAF6FE0FD769CFBC4B6B4CF8758BA68220EAC420E32B91DDFA673<br />
 
 ## Use:
-Current state is always saved to file currentwork.txt <br />
-If app crash or you stop app, you can start working from the last saved state. Provided the launch configuration has not been changed. <br />
-Note! set minimal -htsz value depending on -w <br />
 
 |  Value     |  GPU Memory |
 | ---------- | ----------- |  
@@ -86,7 +83,7 @@ Note! set minimal -htsz value depending on -w <br />
 
 |   Value    |     RAM     |
 | ---------- | ----------- |
-|   -w 30    |   -htsz 28  32GB|
+|   -w 30    |   -htsz 28  |
 |   -w 29    |   -htsz 28  |
 |   -w 28    |   -htsz 27  |
 |   -w 27    |   -htsz 25  |
