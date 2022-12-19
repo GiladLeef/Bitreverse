@@ -1,9 +1,9 @@
 ## Bitreverse - A secp256k1 GPU BSGS Collider
 #### Cuda & Windows x64
 Based on [Etayson/BSGS-cuda](https://github.com/Etayson/BSGS-cuda)<br />
-## Help page: Collider.exe -h
+## Help command: Bitreverse.exe -h
 ```
-C:\Users\User>Collider.exe -h
+C:\Users\User>Bitreverse.exe -h
 
 -t       Number of GPU threads, Default 512
 -b       Number of GPU blocks, Default 68
