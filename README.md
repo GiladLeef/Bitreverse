@@ -1,4 +1,4 @@
-## Bitreverse - A Secp256k1 GPU BSGS Collider
+## Bitreverse - A secp256k1 GPU BSGS Collider
 #### Cuda & Windows x64
 Based on [Etayson/BSGS-cuda](https://github.com/Etayson/BSGS-cuda)<br />
 ## Help page: Collider.exe -h
