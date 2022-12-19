@@ -88,7 +88,7 @@ C:\Users\User>Bitreverse.exe -h
 |   -w 28    |   -htsz 27  |
 |   -w 27    |   -htsz 25  |
 
-All arrays(Baby, Giant) and hashtable saved to the disk for fast spinup solver next time (if parameters will not changed). <br />
+All arrays and hashtable saved to the disk for fast spinup solver next time. <br />
 After you have the arrays saved, you will need less RAM to launch. <br />
 
 ## Building
