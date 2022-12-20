@@ -5,13 +5,13 @@ Based on [Etayson/BSGS-cuda](https://github.com/Etayson/BSGS-cuda)<br />
 ```
 C:\Users\User>Bitreverse.exe -h
 
--t       Number of GPU threads, Default 512
--b       Number of GPU blocks, Default 68
--p       Number of pparam, Default 256
--d       Select GPU IDs, Default 0 (-d 1,2,3)
--pb      Set single uncompressed/compressed pubkey for searching
--pk      Range start from , Default 0x1
--pke     End range
+-t       Number of GPU threads, Defaults to 512.
+-b       Number of GPU blocks, Defaults to 68.
+-p       Number of pparam, Defaults to 256.
+-d       Select GPU IDs, Defaults to 0 (-d 1,2,3).
+-pb      Set single uncompressed/compressed public key to collide
+-pk      Range to start from, Defaults to 0x1.
+-pke     Range to end at, "End range".
 -w       Set number of baby items 2^ (-w 22  mean 2^22 points)
 -htsz    Set number of HashTable 2^ , Default 26
 -infile  Set file with pubkey for searching in uncompressed/compressed  format (search sequential), one pubkey per line
