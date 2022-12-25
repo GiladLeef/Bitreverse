@@ -24,7 +24,7 @@ C:\Users\User>Bitreverse.exe -h
 - RTX 2070 ( 8 GB) = 1.7 Ekeys/s
 - GTX 1080 ( 8 GB) = 120 Pkeys/s
 - 1 Ekeys = 1,000,000,000,000,000,000
-- 1 Pkeys = 1,000,000,000,000,000,00
+- 1 Pkeys = 100,000,000,000,000,0000
 
 ### Search [Puzzles 120-160](https://privatekeys.pw/puzzles/bitcoin-puzzle-tx)<br />
 #120 17s2b9ksz5y7abUm92cHwG8jEPCzK3dLnT<br />
