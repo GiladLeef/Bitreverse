@@ -74,7 +74,7 @@ C:\Users\User>Bitreverse.exe -h
 
 ## Use:
 
-|  Value     |  GPU Memory |
+|  Value     |  GPU Memory Needed |
 | ---------- | ----------- |  
 |   -w 30    |  11.03 GB   |
 |   -w 29    |   8.01 GB   |
