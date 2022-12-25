@@ -381,7 +381,7 @@ Procedure Tune(memsize, sm)
      If ramneed2>ramneed1
        ramneed1=ramneed2
      EndIf
-     PrintN("  Try parameters: -t "+Str(treadN)+" -b "+Str(blockN)+" -p "+Str(pparamN)+" -w "+Str(k)+" -htsz "+Str(htszN)+" ["+StrD((gsize+httotsize)/1024/1024,3)+" MB] Gen RAM["+Str(ramneed1/1024/1024)+" MB]")
+     PrintN("  Try parameters: -t "+Str(treadN)+" -b "+Str(blockN)+" -p "+Str(pparamN)+" -babies "+Str(k)+" -htsz "+Str(htszN)+" ["+StrD((gsize+httotsize)/1024/1024,3)+" MB] Gen RAM["+Str(ramneed1/1024/1024)+" MB]")
      
      ;Debug "gsize: "+Str(gsize)
      ;Debug "htsize: "+Str(httotsize)
@@ -839,23 +839,23 @@ Procedure getprogparam()
       Case "-h"
         Debug "found -h"
         
-           PrintN( "  -t      Number of GPU threads, default "+Str(threadtotal))
-           PrintN( "  -b      Number of GPU blocks, default "+Str(blocktotal))
-           PrintN( "  -p      Number of pparam, default "+Str(pparam))
-           PrintN( "  -d      Select GPU IDs, default "+Defdevice$)
-           PrintN( " -pb      Set single uncompressed/compressed pubkey for searching")
-           PrintN( " -pk      Range start from , default "+privkey)
-           PrintN( " -pke     End range ")
-           PrintN( " -w       Set number of baby items 2^")
-           PrintN( " -htsz    Set number of HashTable 2^ , default "+Str(HT_POW))
-           PrintN( " -infile  Set file with pubkey for searching in uncompressed/compressed  format (search sequential)")
-           PrintN( " -wl      Set recovery file from which the state will be loaded")
-           PrintN( " -wt      Set timer for autosaving current state, default every "+Str(cnttimer)+"seconds")
+           PrintN( "  -t       Set the number of GPU threads, defaults to "+Str(threadtotal))
+           PrintN( "  -b       Set the number of GPU blocks, defaults to "+Str(blocktotal))
+           PrintN( "  -p       Set the number of param, defaults to "+Str(pparam))
+           PrintN( "  -d       Select NVIDIA CUDA GPU IDs to use")
+           PrintN( " -pubkey   Set single uncompressed/compressed public key to search")
+           PrintN( " -start    Range start point, defaults to "+privkey)
+           PrintN( " -end      Range end point, defaults to the end of 256-bit range")
+           PrintN( " -babies   Set the number of baby items 2^N")
+           PrintN( " -htsz     Set the number of HashTable 2^N, defaults to "+Str(HT_POW))
+           PrintN( " -infile   Set file with public keys list to search for in uncompressed/compressed format (searches one-by-one)")
+           PrintN( " -state    Set a recovery file from which the current state will be able to be loaded from")
+           PrintN( " -timer    Set timer for autosaving current state, defaults to every "+Str(cnttimer)+"seconds")
            Input()
            End
       
-      Case "-wl"
-        Debug "found -wl"
+      Case "-state"
+        Debug "found -state"
         i+1   
         datares$ = ProgramParameter(i) 
         If datares$<>"" And Left(datares$,1)<>"-"  
@@ -863,8 +863,8 @@ Procedure getprogparam()
           recovery=1
           PrintN( "  Recovery work file: "+recoveryfilename$)
          EndIf
-      Case "-wt"
-        Debug "found -wt"
+      Case "-timer"
+        Debug "found -timer"
         i+1   
         datares$ = ProgramParameter(i) 
         If datares$<>"" And Left(datares$,1)<>"-"  
@@ -925,8 +925,8 @@ Procedure getprogparam()
           PrintN( "  Used GPU devices: "+Defdevice$)
         EndIf
         
-      Case "-pb"
-        Debug "found -pb"
+      Case "-pubkey"
+        Debug "found -pubkey"
         i+1   
         datares$ = ProgramParameter(i) 
         If datares$<>"" And Left(datares$,1)<>"-"  
@@ -935,8 +935,8 @@ Procedure getprogparam()
           walid + 1
         EndIf
               
-       Case "-pk"
-        Debug "found -pk"
+       Case "-start"
+        Debug "found -start"
         i+1   
         datares$ = ProgramParameter(i) 
         If datares$<>"" And Left(datares$,1)<>"-"  
@@ -944,8 +944,8 @@ Procedure getprogparam()
           ;PrintN( "  Range begin: "+privkey)         
         EndIf 
         
-       Case "-pke"
-        Debug "found -pke"
+       Case "-end"
+        Debug "found -end"
         i+1   
         datares$ = ProgramParameter(i) 
         If datares$<>"" And Left(datares$,1)<>"-"  
@@ -953,8 +953,8 @@ Procedure getprogparam()
           ;PrintN( "  Range end: "+privkeyend)         
         EndIf  
         
-       Case "-w"
-        Debug "found -w"
+       Case "-babies"
+        Debug "found -babies"
         i+1   
         datares$ = ProgramParameter(i) 
         If datares$<>"" And Left(datares$,1)<>"-"  
@@ -4336,7 +4336,7 @@ If Not usedgpucount
 EndIf
 
 If waletcounter>=Pow(2,31)
-  exit("  -w should be less than 31")
+  exit("  -babies should be less than 31")
 EndIf
 
 If HT_POW>30
@@ -4726,12 +4726,12 @@ LOAD_HTCPUpacked(*CurveGX)
 privkey = RSet(cutHex(privkey),64,"0")
 
 If Len(cuthex(privkey))<>64
-  exit("  Invalid range (-pk) length!!!")
+  exit("  Invalid range (-start) length!!!")
 EndIf
 
 privkeyend = RSet(cutHex(privkeyend),64,"0")
 If Len(cuthex(privkey))<>64
-  exit("  Invalid range (-pkend) length!!!")
+  exit("  Invalid range (-endnd) length!!!")
 EndIf
 
 
@@ -4842,7 +4842,7 @@ ForEach publist()
       If Len(mainpub)=66 And ( Left(mainpub,2)="03" Or Left(mainpub,2)="02")
         mainpub = commpressed2uncomressedPub(mainpub)
       Else
-        exit("  Invalid Public Key (-pb) length!!!")
+        exit("  Invalid Public Key (-pubkey) length!!!")
       EndIf
     EndIf
   EndIf
@@ -6960,8 +6960,8 @@ BSGS4_cuda_quad_htchangeble_v2end:
 EndDataSection
 ; IDE Options = PureBasic 5.31 (Windows - x64)
 ; ExecutableFormat = Console
-; CursorPosition = 5026
-; FirstLine = 4377
+; CursorPosition = 41
+; FirstLine = 38
 ; Folding = TXAg2Xn3+---e-
 ; EnableThread
 ; EnableXP
